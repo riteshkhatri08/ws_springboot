@@ -40,6 +40,7 @@ public class AstroService
         return webClient.get().uri("astros.json")
                 .retrieve()
                 .bodyToMono(AstroResponse.class)
+                .log()
                 .block(Duration.ofSeconds(2));
 
     }
