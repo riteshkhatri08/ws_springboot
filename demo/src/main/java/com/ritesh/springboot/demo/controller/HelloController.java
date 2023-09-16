@@ -17,7 +17,7 @@ public class HelloController {
     @GetMapping("/hello") // * accessible at - http://localhost:8080/hello?name=Ritesh
     public String hello(@RequestParam(value = "name", required = false, defaultValue = "World") String name,
             Model model) {
-
+                System.out.println(model.getClass().getName());
         model.addAttribute("user", name);
         return "welcome"; // ! Spring will snap that to /src/main/resources/templates/welcome.html
     }
