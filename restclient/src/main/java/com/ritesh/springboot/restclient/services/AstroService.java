@@ -23,7 +23,7 @@ public class AstroService
     }
 
     public AstroResponse getAstrosRT() {
-        return template.getForObject("astros.json", AstroResponse.class);
+        return template.getForObject("http://api.open-notify.org/astros.json", AstroResponse.class);
     }
 
     public String getAstros() {
