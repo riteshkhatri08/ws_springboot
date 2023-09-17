@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PersistenceApplication",
+            "request": "launch",
+            "mainClass": "com.ritesh.springboot.persistence.PersistenceApplication",
+            "projectName": "persistence"
+        },
+        {
+            "type": "java",
             "name": "DemoApplication",
             "request": "launch",
             "mainClass": "com.ritesh.springboot.demo.DemoApplication",
