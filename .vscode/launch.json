@@ -34,6 +34,16 @@
             "projectName": "restclient",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TacoCloudApplication<taco-cloud>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ritesh.springaction.tacocloud.TacoCloudApplication",
+            "projectName": "taco-cloud",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
