@@ -1,6 +1,6 @@
 package com.ritesh.springaction.tacocloud.controller;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.ritesh.springaction.tacocloud.data.repository.IngredientRepository;
 import com.ritesh.springaction.tacocloud.model.Ingredient;
 import com.ritesh.springaction.tacocloud.model.Ingredient.Type;
 import com.ritesh.springaction.tacocloud.model.Taco;
@@ -28,14 +29,25 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes("tacoOrder") // ? tacoOrder i.e put in Model and will be maintained in session
 public class DesignTacoController {
 
+    private IngredientRepository ingredientRepository;
+
+    public DesignTacoController(IngredientRepository ingredientRepository) {
+        this.ingredientRepository = ingredientRepository;
+    }
+
     @GetMapping
     public String showDesignForm() {
         return "design";
     }
 
     @PostMapping
-    public String processTaco(@Valid Taco taco , Errors errors, @ModelAttribute TacoOrder tacoOrder){
-        if(errors.hasErrors()){
+    public String processTaco(@Valid Taco taco, Errors errors, @ModelAttribute TacoOrder tacoOrder) {
+        if (errors.hasErrors()) {
+            log.debug("YOOOO - THERE'S ERRORRRSSS");
+            log.debug("[TACO = ] " + taco.toString());
+            log.debug("[TACO ORDER  = ] " + tacoOrder.toString());
+            errors.getAllErrors().forEach(err -> log.error(err.toString()));
+
             // ? Return "design" view if validations fail for taco object
             return "design";
         }
@@ -44,20 +56,27 @@ public class DesignTacoController {
         return "redirect:/orders/current";
     }
 
-    @ModelAttribute // ? @ModelAttribute methods are invoked before the controller methods annotated with @RequestMapping are invoked.
-    //? This is because the model object has to be created before any processing starts inside the controller methods.
+    @ModelAttribute // ? @ModelAttribute methods are invoked before the controller methods annotated
+                    // with @RequestMapping are invoked.
+    // ? This is because the model object has to be created before any processing
+    // ? starts inside the controller methods.
     public void addIngredientsToModel(Model model) {
-        List<Ingredient> ingredients = Arrays.asList(
-                new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
-                new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
-                new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
-                new Ingredient("CARN", "Carnitas", Type.PROTEIN),
-                new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
-                new Ingredient("LETC", "Lettuce", Type.VEGGIES),
-                new Ingredient("CHED", "Cheddar", Type.CHEESE),
-                new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
-                new Ingredient("SLSA", "Salsa", Type.SAUCE),
-                new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
+
+        // ! Fetch available ingredients from db instead of hard coded list
+        List<Ingredient> ingredients = new ArrayList<Ingredient>();
+        ingredientRepository.findAll().forEach(i -> ingredients.add(i));
+
+        // List<Ingredient> ingredients = Arrays.asList(
+        // new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
+        // new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
+        // new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
+        // new Ingredient("CARN", "Carnitas", Type.PROTEIN),
+        // new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
+        // new Ingredient("LETC", "Lettuce", Type.VEGGIES),
+        // new Ingredient("CHED", "Cheddar", Type.CHEESE),
+        // new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
+        // new Ingredient("SLSA", "Salsa", Type.SAUCE),
+        // new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
 
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {
@@ -66,7 +85,7 @@ public class DesignTacoController {
         }
     }
 
-    @ModelAttribute(name = "tacoOrder")// ? This Model attribute will stay for the session
+    @ModelAttribute(name = "tacoOrder") // ? This Model attribute will stay for the session
     public TacoOrder order() {
         return new TacoOrder();
     }

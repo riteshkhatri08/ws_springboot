@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.ritesh.springaction.tacocloud.data.repository.impl.TacoOrderRepository;
 import com.ritesh.springaction.tacocloud.model.TacoOrder;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/orders")
 @SessionAttributes("tacoOrder")
 public class OrderController {
+
+    private TacoOrderRepository tacoOrderRepository;
+
+    public OrderController(TacoOrderRepository tacoOrderRepository) {
+        this.tacoOrderRepository = tacoOrderRepository;
+    }
 
     @GetMapping("/current")
     public String orderForm() {
@@ -32,6 +39,8 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "orderForm";
         }
+
+        tacoOrderRepository.save(order);
 
         log.info("Order submitted: {}", order);
         sessionStatus.setComplete();

@@ -1,10 +1,16 @@
 delete from Ingredient;
+delete from Ingredient_Ref;
+delete from Taco;
+delete from Taco_Order;
+
+
+--  INGREDIENT TABLE
 insert into Ingredient (id, name, type) 
-                values ('FLTO', 'Flour Tortilla', 'WRAP');
+                values ('FLTO', 'Wheat Flour Tortilla', 'WRAP');
 insert into Ingredient (id, name, type) 
                 values ('COTO', 'Corn Tortilla', 'WRAP');
 insert into Ingredient (id, name, type) 
-                values ('GRBF', 'Ground Beef', 'PROTEIN');
+                values ('CHSH', 'Chicken Shreds', 'PROTEIN');
 insert into Ingredient (id, name, type) 
                 values ('CARN', 'Carnitas', 'PROTEIN');
 insert into Ingredient (id, name, type) 
@@ -19,3 +25,8 @@ insert into Ingredient (id, name, type)
                 values ('SLSA', 'Salsa', 'SAUCE');
 insert into Ingredient (id, name, type) 
                 values ('SRCR', 'Sour Cream', 'SAUCE');
+
+
+
+
+

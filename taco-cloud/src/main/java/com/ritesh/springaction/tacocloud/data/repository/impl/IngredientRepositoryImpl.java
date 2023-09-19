@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 import com.ritesh.springaction.tacocloud.data.repository.IngredientRepository;
 import com.ritesh.springaction.tacocloud.model.Ingredient;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class IngredientRepositoryImpl implements IngredientRepository {
 
@@ -33,6 +36,8 @@ public class IngredientRepositoryImpl implements IngredientRepository {
 
     @Override
     public Optional<Ingredient> findById(String id) {
+
+       log.debug("[FETCHING INGREDIENT WITH ID  - =  " + id + " o]");
         List<Ingredient> results = jdbcTemplate.query(
                 "select id, name, type from Ingredient where id=?",
                 this::mapRowToIngredient,
@@ -43,13 +48,12 @@ public class IngredientRepositoryImpl implements IngredientRepository {
     @Override
     public Ingredient save(Ingredient ingredient) {
 
-        int noOfRowsUpdated = jdbcTemplate.update("UPDATE Ingredient set name = ? and Type = ? where id  = ? ",
-
+        int noOfRowsUpdated = jdbcTemplate.update(
+                "insert into Ingredient (id, name, type) values (?, ?, ?)",
+                ingredient.getId(),
                 ingredient.getName(),
-                ingredient.getType(),
-                ingredient.getId()
+                ingredient.getType().toString());
 
-        );
         return (noOfRowsUpdated > 0) ? ingredient : null;
     }
 
