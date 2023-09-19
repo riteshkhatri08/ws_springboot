@@ -1,6 +1,8 @@
 package com.ritesh.springaction.tacocloud.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.Digits;
@@ -12,7 +14,11 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import lombok.Data;
 
 @Data
-public class TacoOrder {
+public class TacoOrder implements Serializable {
+
+    private Long id;
+
+    private Date placedAt;
 
     @NotBlank(message = "Delivery name is required")
     private String deliveryName;
