@@ -42,8 +42,15 @@ public class IngredientRepositoryImpl implements IngredientRepository {
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+
+        int noOfRowsUpdated = jdbcTemplate.update("UPDATE Ingredient set name = ? and Type = ? where id  = ? ",
+
+                ingredient.getName(),
+                ingredient.getType(),
+                ingredient.getId()
+
+        );
+        return (noOfRowsUpdated > 0) ? ingredient : null;
     }
 
     private Ingredient mapRowToIngredient(ResultSet row, int rowNum)
