@@ -52,7 +52,7 @@ public class CZApplicationRunner
             log.debug("liveness state =" + availabilityProvider.getLivenessState());
             log.debug("Readiness State = " + availabilityProvider.getReadinessState());
 
-            Thread.sleep(30000); // for testing purpose only
+            Thread.sleep(1); // for testing purpose only
         } catch (InterruptedException e) {
 
             e.printStackTrace();
