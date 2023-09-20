@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.ritesh.springaction.tacocloud.model.Ingredient;
 
-@Repository
 public interface IngredientRepository {
 
     Iterable<Ingredient> findAll();

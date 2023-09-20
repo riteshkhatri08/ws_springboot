@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +20,6 @@ public class IngredientRepositoryImpl implements IngredientRepository {
     // ? All jdbc queries are executed through this jdbc template
     JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public IngredientRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -37,7 +35,7 @@ public class IngredientRepositoryImpl implements IngredientRepository {
     @Override
     public Optional<Ingredient> findById(String id) {
 
-       log.debug("[FETCHING INGREDIENT WITH ID  - =  " + id + " o]");
+        log.debug("[FETCHING INGREDIENT WITH ID  - =  " + id + " o]");
         List<Ingredient> results = jdbcTemplate.query(
                 "select id, name, type from Ingredient where id=?",
                 this::mapRowToIngredient,

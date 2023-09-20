@@ -1,9 +1,7 @@
 package com.ritesh.springaction.tacocloud.web;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -11,8 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-@EnableWebMvc
-@ComponentScan(basePackages = "com.ritesh.springaction.tacocloud.bootstrap")
+// @ComponentScan(basePackages = "com.ritesh.springaction.tacocloud.bootstrap")
 public class WebConfig implements WebMvcConfigurer {
 
     // ? WebMvcConfigurer defines several methods for configuring Spring MVC
