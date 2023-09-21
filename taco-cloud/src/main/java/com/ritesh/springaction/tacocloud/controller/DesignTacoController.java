@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.ritesh.springaction.tacocloud.data.repository.IngredientRepository;
+import com.ritesh.springaction.tacocloud.Type;
+import com.ritesh.springaction.tacocloud.dao.IngredientJPARepository;
 import com.ritesh.springaction.tacocloud.model.Ingredient;
-import com.ritesh.springaction.tacocloud.model.Ingredient.Type;
 import com.ritesh.springaction.tacocloud.model.Taco;
 import com.ritesh.springaction.tacocloud.model.TacoOrder;
 
@@ -29,12 +29,21 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes("tacoOrder") // ? tacoOrder i.e put in Model and will be maintained in session
 public class DesignTacoController {
 
-    private IngredientRepository ingredientRepository;
+    // private IngredientRepository ingredientRepository;
 
-    public DesignTacoController(IngredientRepository ingredientRepository) {
+    // public DesignTacoController(IngredientRepository ingredientRepository) {
+    //     this.ingredientRepository = ingredientRepository;
+    // }
+
+
+    //CHANGING TO JPA REPOSITORY
+    private IngredientJPARepository ingredientRepository;
+
+    public DesignTacoController(IngredientJPARepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
+    
     }
-
+    
     @GetMapping
     public String showDesignForm() {
         return "design";
@@ -78,7 +87,7 @@ public class DesignTacoController {
         // new Ingredient("SLSA", "Salsa", Type.SAUCE),
         // new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
 
-        Type[] types = Ingredient.Type.values();
+        Type[] types = Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
                     filterByType(ingredients, type));

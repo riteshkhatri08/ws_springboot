@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.ritesh.springaction.tacocloud.data.repository.impl.TacoOrderRepository;
+import com.ritesh.springaction.tacocloud.dao.TacoOrderJPARepository;
 import com.ritesh.springaction.tacocloud.model.TacoOrder;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +21,15 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes("tacoOrder")
 public class OrderController {
 
-    private TacoOrderRepository tacoOrderRepository;
+    // private TacoOrderRepository tacoOrderRepository;
 
-    public OrderController(TacoOrderRepository tacoOrderRepository) {
+    // public OrderController(TacoOrderRepository tacoOrderRepository) {
+    //     this.tacoOrderRepository = tacoOrderRepository;
+    // }
+
+    private TacoOrderJPARepository tacoOrderRepository;
+
+    public OrderController(TacoOrderJPARepository tacoOrderRepository) {
         this.tacoOrderRepository = tacoOrderRepository;
     }
 

@@ -3,28 +3,26 @@ package com.ritesh.springaction.tacocloud.web;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.ritesh.springaction.tacocloud.data.repository.IngredientRepository;
+import com.ritesh.springaction.tacocloud.dao.IngredientJPARepository;
 import com.ritesh.springaction.tacocloud.model.Ingredient;
 
 @Component
 public class IngredientByIdConvertor implements Converter<String, Ingredient> {
 
-        private IngredientRepository ingredientRepository;
-
         // @Autowired
         // ApplicationContext context;
 
-        // @Autowired
-        public IngredientByIdConvertor(IngredientRepository ingredientRepository) {
-                // log.error("********************************************************");
-                // log.error("INITIALISING INGREDIENT REPO in Convertor");
-                // log.error("constructor param = " + ingredientRepository);
+        // private IngredientRepository ingredientRepository;
 
-                // IngredientRepository ingredientRepository
+        // public IngredientByIdConvertor(IngredientRepository ingredientRepository) {
+        // this.ingredientRepository = ingredientRepository;
+        // }
+
+        // CHANGING TO JPA REPOSITORY
+        private IngredientJPARepository ingredientRepository;
+
+        public IngredientByIdConvertor(IngredientJPARepository ingredientRepository) {
                 this.ingredientRepository = ingredientRepository;
-
-                // log.error("INSTANCE PARAM = " + this.ingredientRepository);
-                // log.error("********************************************************");
         }
 
         // private Map<String, Ingredient> ingredientMap = new HashMap<String,
