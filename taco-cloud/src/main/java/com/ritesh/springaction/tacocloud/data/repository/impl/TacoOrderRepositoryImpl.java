@@ -16,7 +16,7 @@ import com.ritesh.springaction.tacocloud.model.Ingredient;
 import com.ritesh.springaction.tacocloud.model.Taco;
 import com.ritesh.springaction.tacocloud.model.TacoOrder;
 
-@Repository
+// @Repository
 public class TacoOrderRepositoryImpl implements TacoOrderRepository {
 
         private JdbcOperations jdbcOperations;

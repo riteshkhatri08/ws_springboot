@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ritesh.springaction.tacocloud.model.TacoOrder;
 
-@Repository
+// @Repository
 public interface TacoOrderRepository {
 
     public TacoOrder save(TacoOrder tacoOrder);

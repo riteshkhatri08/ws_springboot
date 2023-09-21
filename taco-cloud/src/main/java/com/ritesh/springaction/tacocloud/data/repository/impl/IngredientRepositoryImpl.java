@@ -6,15 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
+import com.ritesh.springaction.tacocloud.Type;
 import com.ritesh.springaction.tacocloud.data.repository.IngredientRepository;
 import com.ritesh.springaction.tacocloud.model.Ingredient;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@Repository
+// @Slf4j
+// @Repository
 public class IngredientRepositoryImpl implements IngredientRepository {
 
     // ? All jdbc queries are executed through this jdbc template
@@ -35,7 +33,7 @@ public class IngredientRepositoryImpl implements IngredientRepository {
     @Override
     public Optional<Ingredient> findById(String id) {
 
-        log.debug("[FETCHING INGREDIENT WITH ID  - =  " + id + " o]");
+        // log.debug("[FETCHING INGREDIENT WITH ID  - =  " + id + " o]");
         List<Ingredient> results = jdbcTemplate.query(
                 "select id, name, type from Ingredient where id=?",
                 this::mapRowToIngredient,
@@ -60,6 +58,6 @@ public class IngredientRepositoryImpl implements IngredientRepository {
         return new Ingredient(
                 row.getString("id"),
                 row.getString("name"),
-                Ingredient.Type.valueOf(row.getString("type")));
+                Type.valueOf(row.getString("type")));
     }
 }
