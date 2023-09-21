@@ -33,7 +33,7 @@ public class IngredientRepositoryImpl implements IngredientRepository {
     @Override
     public Optional<Ingredient> findById(String id) {
 
-        // log.debug("[FETCHING INGREDIENT WITH ID  - =  " + id + " o]");
+        // log.debug("[FETCHING INGREDIENT WITH ID - = " + id + " o]");
         List<Ingredient> results = jdbcTemplate.query(
                 "select id, name, type from Ingredient where id=?",
                 this::mapRowToIngredient,

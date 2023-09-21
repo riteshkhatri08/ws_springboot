@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.stereotype.Repository;
 
 import com.ritesh.springaction.tacocloud.model.Ingredient;
 import com.ritesh.springaction.tacocloud.model.Taco;

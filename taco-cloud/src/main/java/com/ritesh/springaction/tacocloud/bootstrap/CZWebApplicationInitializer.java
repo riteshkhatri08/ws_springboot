@@ -1,19 +1,10 @@
 package com.ritesh.springaction.tacocloud.bootstrap;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
-import org.springframework.boot.availability.ApplicationAvailability;
-import org.springframework.boot.availability.LivenessState;
-import org.springframework.boot.availability.ReadinessState;
 import org.springframework.core.annotation.Order;
-import org.springframework.web.WebApplicationInitializer;
-
-import lombok.extern.slf4j.Slf4j;
 
 
 // ! DOESN't WORK 
-@Slf4j
+// @Slf4j
 @Order(Integer.MIN_VALUE)
 public class CZWebApplicationInitializer 
 // implements WebApplicationInitializer 
