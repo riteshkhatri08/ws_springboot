@@ -1,5 +1,5 @@
 delete from Ingredient;
-delete from Ingredient_Ref;
+-- delete from Ingredient_Ref;
 delete from Taco;
 delete from Taco_Order;
 
