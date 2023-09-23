@@ -14,13 +14,13 @@ public class BootstrapInitiailzingBean implements InitializingBean {
     @Override
     @PostConstruct
     public void afterPropertiesSet() throws Exception {
-        log.debug("Inside BootstrapInitiailzingBean: Sleeping for 30 Seconds");
+        log.debug("Inside BootstrapInitiailzingBean: Sleeping for 0.15 Seconds");
         try {
-            Thread.sleep(15000);
+            Thread.sleep(15);
         } catch (InterruptedException exception) {
             exception.printStackTrace();
         }
-         log.debug("Inside BootstrapInitiailzingBean: WOKE UP after 30 Seconds");
+         log.debug("Inside BootstrapInitiailzingBean: WOKE UP after 0.15 Seconds");
 
     }
 
