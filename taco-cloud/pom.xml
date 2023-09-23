@@ -77,8 +77,12 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!--  Dependency for utilizing spring caching -->
 	
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
  </dependencies>
 
 
