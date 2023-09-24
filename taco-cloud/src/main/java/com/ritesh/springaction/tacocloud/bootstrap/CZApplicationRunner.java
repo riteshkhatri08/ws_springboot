@@ -45,7 +45,7 @@ public class CZApplicationRunner
 
     @PostConstruct
     public void init() {
-        log.debug(Thread.currentThread() + " ::::: SLEEPING for 30 seconds ");
+        log.debug(Thread.currentThread() + " ::::: SLEEPING for 1 seconds ");
         try {
             // ?  we can use @PostConstruct on a method and that method will be called after a bean has been initialized .. s
             // ? here we can performDB based operation like populating a cache from DB
