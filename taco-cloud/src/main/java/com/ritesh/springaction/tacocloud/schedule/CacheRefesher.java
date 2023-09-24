@@ -35,7 +35,7 @@ public class CacheRefesher {
 
     }
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedDelay = 10000)
     @CacheEvict(value=INGREDIENTS_CACHE_NAME, allEntries = true)
     public void refillIngredientsCache(){
         log.debug("Evicted  " + INGREDIENTS_CACHE_NAME);
