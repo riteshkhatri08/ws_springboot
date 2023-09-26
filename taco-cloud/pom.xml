@@ -78,15 +78,20 @@
 		</dependency>
 
 		<!--  Dependency for utilizing spring caching -->
-	
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
- </dependencies>
-
-
-
+		
+		<!-- Dependency for spring security  -->
+		<!--!  This dependency is all that's required to enable basic security  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
