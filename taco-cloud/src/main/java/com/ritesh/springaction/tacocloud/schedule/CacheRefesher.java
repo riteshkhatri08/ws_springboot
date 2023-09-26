@@ -30,16 +30,15 @@ public class CacheRefesher {
         List<Ingredient> ingredients = ingredientService.getAll();
         Cache ingredientsCache = cacheManager.getCache(INGREDIENTS_CACHE_NAME);
         ingredients.forEach(ingredient -> ingredientsCache.putIfAbsent(ingredient.getId(), ingredient));
-        ingredients.forEach(System.out::print);
+        // ingredients.forEach(System.out::print);
         System.out.println("\n");
 
     }
 
-    @Scheduled(fixedDelay = 360000)
+    @Scheduled(initialDelay = 3600000, fixedDelay = 3600000)
     @CacheEvict(value=INGREDIENTS_CACHE_NAME, allEntries = true)
     public void refillIngredientsCache(){
-        log.debug("Evicted  " + INGREDIENTS_CACHE_NAME);
-        log.debug("Refilling " + INGREDIENTS_CACHE_NAME);
         fillIngredientsCache();
+        log.info("Refreshed " + INGREDIENTS_CACHE_NAME);
     }
 }

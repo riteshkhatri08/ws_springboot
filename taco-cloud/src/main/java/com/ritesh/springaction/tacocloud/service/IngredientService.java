@@ -22,7 +22,7 @@ public class IngredientService {
 
     @Cacheable("ingredientsCache")
     public List<Ingredient> getAll() {
-        log.info("Fetching all ingredient");
+        log.debug("Fetching all ingredient");
 
         List<Ingredient> result = new ArrayList<Ingredient>();
         repository.findAll().forEach(result::add);

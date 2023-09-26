@@ -86,6 +86,12 @@
 		
 		<!-- Dependency for spring security  -->
 		<!--!  This dependency is all that's required to enable basic security  -->
+		<!-- ? DEFAULTS 
+		?	All HTTP request paths require authentication.
+		?	No specific roles or authorities are required.
+		?	Authentication is prompted with a simple login page.
+		?	There’s only one user; the username is user.
+		?-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
