@@ -1,4 +1,5 @@
-<configuration debug="true">
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <configuration debug="true">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
       <encoder>
         <pattern>%d{HH:mm:ss.SSS} [%thread] {%t} %-5level %logger{36} - %msg%n</pattern>
@@ -8,4 +9,21 @@
     <root level="debug">
       <appender-ref ref="STDOUT" />
     </root>
-  </configuration>
+  </configuration> -->
+
+
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>
+        [ %yellow(%d{dd-MM-yyyy HH:mm:ss.SSS}) | %highlight(%-5level) | %cyan(%logger{36}.%M) - %msg ]%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="STDOUT"/>
+  </root>
+ 
+</configuration>
