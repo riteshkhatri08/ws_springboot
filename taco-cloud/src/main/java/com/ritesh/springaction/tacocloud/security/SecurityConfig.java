@@ -45,7 +45,8 @@ public class SecurityConfig {
                 Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
 
         // Return a manager that stores these users in memory
-        // Below class implements UserDetailsService
+        // Below class implements UserDetailsService 
+        // InMemoryUserDetailsManager doesn't allow editing of users
         return new InMemoryUserDetailsManager(usersList);
     }
 
