@@ -1,4 +1,4 @@
-package com.ritesh.springaction.tacocloud.security;
+package com.ritesh.springaction.tacocloud.security.entity;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package com.ritesh.springaction.tacocloud.security;
+package com.ritesh.springaction.tacocloud.security.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
