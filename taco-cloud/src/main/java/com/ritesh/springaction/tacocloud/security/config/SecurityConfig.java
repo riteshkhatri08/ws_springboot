@@ -63,8 +63,8 @@ public class SecurityConfig {
 
     // ! Customizing SecurityFilterChain Bean so that no authenitcation is required
     // ! for registering users 
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-
         return httpSecurity
         .authorizeRequests()
         .antMatchers("/design", "/orders") // DO authoirzation for /design and /orders page
