@@ -10,6 +10,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.ritesh.springaction.tacocloud.security.dao.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class SecurityConfig {
     // ? Commenting out this bena as we now have a custom bean that can fetch users
@@ -54,6 +57,10 @@ public class SecurityConfig {
             UserRepository userRepository) {
 
         return username -> {
+            
+            log.info("******* PRINTING ALL USERS ************");
+            userRepository.findAll().forEach(System.out::println);
+            
             com.ritesh.springaction.tacocloud.security.entity.User user = userRepository.findByUsername(username);
             if (user != null)
                 return user;
@@ -62,15 +69,22 @@ public class SecurityConfig {
     }
 
     // ! Customizing SecurityFilterChain Bean so that no authenitcation is required
-    // ! for registering users 
+    // ! for registering users
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-        .authorizeRequests()
-        .antMatchers("/design", "/orders") // DO authoirzation for /design and /orders page
-        .hasRole("USER") // users must have role // user
-        .antMatchers("/", "/**").permitAll() // Allow access to remaining uris to all users
-        .and().build(); // build the securityfilter change
+
+                .authorizeRequests()
+                .antMatchers("/design", "/orders") // DO authoirzation for /design and /orders page
+                .hasRole("USER") // users must have role // user
+                .antMatchers("/", "/**").permitAll() // Allow access to remaining uris to all users
+                .and()
+                .formLogin() // ? map lpgin form to a different uri
+                .loginPage("/login")
+                .defaultSuccessUrl("/design", true) // ? if user logged in successfully then redirect to this url
+                .and()
+                .csrf().disable().build();
+        // .and().build(); // build the securityfilter change
 
         /*
          * The following are among the many things you can configure with HttpSecurity:
