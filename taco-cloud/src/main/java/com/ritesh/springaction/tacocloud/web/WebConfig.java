@@ -26,7 +26,10 @@ public class WebConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         log.info("configured view controller- home to path root -/");
         registry.addViewController("/").setViewName("home");
+        // ? Added login view to ogin page
+        registry.addViewController("/login");
+}
 
     }
 
-}
+
