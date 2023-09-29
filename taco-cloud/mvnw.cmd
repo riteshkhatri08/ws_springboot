@@ -57,7 +57,7 @@ set ERROR_CODE=0
 @REM To isolate internal variables from possible post scripts, we use another setlocal
 @setlocal
 
-set JAVA_HOME=C:/Program Files/Java/jdk-11.0.15/
+set JAVA_HOME=C:/Program Files/Java/jdk-11.0.11/
 
 @REM ==== START VALIDATION ====
 if not "%JAVA_HOME%" == "" goto OkJHome
