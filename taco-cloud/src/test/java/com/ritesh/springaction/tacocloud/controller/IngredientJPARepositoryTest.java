@@ -2,12 +2,14 @@ package com.ritesh.springaction.tacocloud.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ritesh.springaction.tacocloud.dao.IngredientJPARepository;
 import com.ritesh.springaction.tacocloud.model.Ingredient;
 
 @SpringBootTest
+@AutoConfigureMockMvc(addFilters = false)// Disable security filters
 public class IngredientJPARepositoryTest {
 
     @Autowired
