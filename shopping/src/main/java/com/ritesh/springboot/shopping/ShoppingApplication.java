@@ -20,7 +20,11 @@ public class ShoppingApplication {
 
 	@Bean
 	public ApplicationRunner applicationRunner(ProductRepository productRepository) {
+		// ! Below lambda function is not transactional
+		// ! Inserts are done one after another, not in batch mode
+		// ! Even if one insert statement fails, other would be successful
 		return args -> {
+
 			List<Product> products = List.of(
 					new Product("Football", BigDecimal.valueOf(25.00)),
 					new Product("Volleyball", BigDecimal.valueOf(500.00)),
