@@ -2,6 +2,7 @@ package com.ritesh.springboot.shopping.service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,12 @@ public class ProductService {
     @Transactional(readOnly = true)
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+    
+    public Optional<Product> getProductById(Integer id) {
+
+        return productRepository.findById(id);
+
     }
 
 }
