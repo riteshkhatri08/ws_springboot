@@ -44,6 +44,16 @@
             "projectName": "taco-cloud",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ShoppingApplication<shopping>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ritesh.springboot.shopping.ShoppingApplication",
+            "projectName": "shopping",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
