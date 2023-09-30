@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Product {
@@ -13,17 +16,22 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "Name is Required")
     private String name;
-    private BigDecimal product;
+
+    @NotNull(message = "Price is Required")
+    @PositiveOrZero(message = "Price must be positive or zero")
+    private BigDecimal price;
 
     public Product() {
 
     }
 
-    public Product(String name, BigDecimal product) {
+    public Product(String name, BigDecimal price) {
 
         this.name = name;
-        this.product = product;
+        this.price = price;
     }
 
     public int getId() {
@@ -42,12 +50,12 @@ public class Product {
         this.name = name;
     }
 
-    public BigDecimal getProduct() {
-        return product;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setProduct(BigDecimal product) {
-        this.product = product;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
 }
