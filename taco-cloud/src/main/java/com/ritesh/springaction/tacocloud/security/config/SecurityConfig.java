@@ -2,6 +2,7 @@ package com.ritesh.springaction.tacocloud.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
+// @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true) // To enable peAuthorize annotation
 public class SecurityConfig {
     // ? Commenting out this bena as we now have a custom bean that can fetch users
     // from db
@@ -74,16 +77,14 @@ public class SecurityConfig {
                 .antMatchers("/design", "/orders") // DO authoirzation for /design and /orders page
                 .hasRole("USER") // users must have role // user
                 .antMatchers("/", "/**").permitAll() // Allow access to remaining uris to all users
-                .and()
-                .formLogin() // ? map lpgin form to a different uri
-                .loginPage("/login")
+                .and().formLogin().loginPage("/login")// ? map lpgin form to a different uri
                 .defaultSuccessUrl("/design", true) // ? if user logged in successfully then redirect to this url
-                .and().authorizeRequests().antMatchers("/").permitAll()// Allow unaothrized request to root context
-                .and().authorizeRequests().antMatchers("/console/**").permitAll() // Allow unathoirzed request to h2 console 
-                .and().headers().frameOptions().disable() // Disable header frames 
+                .and().authorizeRequests()
+                .antMatchers("/console/**").permitAll() // Allow unathoirzed request to h2 console
+                .and().headers().frameOptions().disable() // Disable header frames -- imp to be able to access h2
+                                                          // console
                 .and().csrf().disable()// Disable xsrf
                 .build();// Build the http security filter chain
-
 
         // .and().build(); // build the securityfilter change
 

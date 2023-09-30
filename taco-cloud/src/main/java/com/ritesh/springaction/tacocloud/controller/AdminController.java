@@ -1,5 +1,6 @@
 package com.ritesh.springaction.tacocloud.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class AdminController {
     }
 
     @PostMapping("/deleteAllOrders")
+    @PreAuthorize("hasRole('ADMIN')") // ? Added security that only USERS with role ADMIN can delete
     public String deleteAllOrders() {
         log.info("Deleting All Orders");
         this.tacoOrderJPARepository.deleteAll();
