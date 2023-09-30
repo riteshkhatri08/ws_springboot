@@ -56,8 +56,8 @@ public class CZApplicationRunner
 
         // do nothing
         // Add a default user at startup for testing
-        User defualtUser = new User("ritesh", passwordEncoder.encode("password"), "riteshkhatri", "street", "city",
-                "state", "452001", "987543210");
+        User defualtUser = new User("ritesh", passwordEncoder.encode("password"), "riteshkhatri", "sapna sangeeta", "indore",
+                "mp", "452001", "987543210");
         log.info("\n\n\n Adding default user with username = 'ritesh' and password = 'password'\n\n\n");
 
         userRepository.save(defualtUser);
