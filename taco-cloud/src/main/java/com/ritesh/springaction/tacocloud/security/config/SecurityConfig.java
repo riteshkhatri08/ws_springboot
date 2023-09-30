@@ -51,14 +51,12 @@ public class SecurityConfig {
     // // InMemoryUserDetailsManager doesn't allow editing of users
     // return new InMemoryUserDetailsManager(usersList);
     // }
-
     @Bean
     public com.ritesh.springaction.tacocloud.security.service.UserDetailsService userDetailsService(
             UserRepository userRepository) {
 
         return username -> {
-            
-            
+
             com.ritesh.springaction.tacocloud.security.entity.User user = userRepository.findByUsername(username);
             if (user != null)
                 return user;
@@ -80,8 +78,13 @@ public class SecurityConfig {
                 .formLogin() // ? map lpgin form to a different uri
                 .loginPage("/login")
                 .defaultSuccessUrl("/design", true) // ? if user logged in successfully then redirect to this url
-                .and()
-                .csrf().disable().build();
+                .and().authorizeRequests().antMatchers("/").permitAll()// Allow unaothrized request to root context
+                .and().authorizeRequests().antMatchers("/console/**").permitAll() // Allow unathoirzed request to h2 console 
+                .and().headers().frameOptions().disable() // Disable header frames 
+                .and().csrf().disable()// Disable xsrf
+                .build();// Build the http security filter chain
+
+
         // .and().build(); // build the securityfilter change
 
         /*
