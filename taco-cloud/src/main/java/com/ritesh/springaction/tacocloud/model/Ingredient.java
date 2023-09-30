@@ -1,5 +1,7 @@
 package com.ritesh.springaction.tacocloud.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,7 +23,7 @@ import lombok.NoArgsConstructor;
 
 // ? All arguments constructor for us to create ingredient objects;
 @AllArgsConstructor
-public class Ingredient {
+public class Ingredient implements Serializable {
     @Id // USED FOR JPA // Must uniquely identify
     private final String id;
     private final String name;

@@ -1,5 +1,6 @@
 package com.ritesh.springaction.tacocloud.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import lombok.Data;
 
 @Data
 @Entity // JPA MAPPING
-public class Taco {
+public class Taco implements Serializable {
 
     @Id // JPA MAPPING
     @GeneratedValue(strategy = GenerationType.AUTO) // JPA MAPPING to auto generate id
