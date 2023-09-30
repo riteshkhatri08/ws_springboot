@@ -58,8 +58,6 @@ public class SecurityConfig {
 
         return username -> {
             
-            log.info("******* PRINTING ALL USERS ************");
-            userRepository.findAll().forEach(System.out::println);
             
             com.ritesh.springaction.tacocloud.security.entity.User user = userRepository.findByUsername(username);
             if (user != null)
