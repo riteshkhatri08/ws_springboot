@@ -37,10 +37,20 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-    
+
     public Optional<Product> getProductById(Integer id) {
 
         return productRepository.findById(id);
+
+    }
+
+    public Optional<Product> addProduct(Product product) {
+        try {
+            return Optional.of(productRepository.save(product));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
 
     }
 
